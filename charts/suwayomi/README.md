@@ -12,6 +12,13 @@ server.systemTrayEnabled: false
 server.initialOpenInBrowserEnabled: false
 ```
 
+You can also specify it in this format:
+```yaml
+server:
+  systemTrayEnabled: false
+  initialOpenInBrowserEnabled: false
+```
+
 For secret values you should use the corresponding environment variable, refer to https://github.com/Suwayomi/Suwayomi-Server-docker
 ```yaml
 env:
