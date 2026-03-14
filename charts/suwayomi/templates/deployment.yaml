@@ -44,6 +44,9 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          {{- with .Values.env}}
+          env:
+            {{- toYaml . | nindent 12}}
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
@@ -56,13 +59,34 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
+          {{ if or (.Values.server) (.Values.existingConfig) (.Values.volumeMounts) -}}
           volumeMounts:
+          {{- end}}
+          {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+            {{ if or (.Values.server) (.Values.existingConfig) -}}
+            - name: config
+              mountPath: /home/suwayomi/.local/share/Tachidesk/server.conf
+              subPath: server.conf
+              readOnly: true
+            {{- end}}
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
+        - name: config
+          configMap:
+            {{- if .Values.server -}}
+            name: {{ include "suwayomi.fullname" . }}-config
+            {{- else -}}
+            {{- if .Values.existingConfig.enabled -}}
+            name: {{ .Values.existingConfig.configName }}
+            items:
+              - key: {{ .Values.existingConfig.configKey}}
+                path: "server.conf"
+            {{- end }}
+             {{- end }}
+
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

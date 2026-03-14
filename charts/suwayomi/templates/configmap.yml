@@ -1,0 +1,12 @@
+{{- if .Values.server -}}
+{{- $fullName := include "suwayomi.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $fullName }}-config
+data:
+  'server.conf': |
+{{ range $key,$value := .Values.server -}}
+{{ indent 4 "server."}}{{$key}} = '{{$value}}'
+{{ end }}
+{{- end }}
