@@ -19,6 +19,15 @@ server:
   initialOpenInBrowserEnabled: false
 ```
 
+Otherwise you can also specify your config from a preexisting configMap
+```yaml
+existingConfig:
+  enabled: true
+  configName: myCustomConfig
+  configKey: server.conf
+
+```
+
 For secret values you should use the corresponding environment variable, refer to https://github.com/Suwayomi/Suwayomi-Server-docker
 ```yaml
 env:
