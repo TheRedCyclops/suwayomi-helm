@@ -41,7 +41,7 @@ existingConfig:
 
 # -- enable presistence
 persistence:
-  enabled: true
+  enabled: false
   size: 500Mi
   accessMode: ReadWriteOnce
   storageClass: ""
