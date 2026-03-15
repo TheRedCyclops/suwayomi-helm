@@ -85,9 +85,13 @@ spec:
             items:
               - key: {{ .Values.existingConfig.configKey}}
                 path: "server.conf"
-            {{- end }}
-            {{- end }}
         {{- end }}
+        - name: data
+        {{- if eq .Values.persistence.enabled true}}
+          claimName: {{ .Values.persistence.existingClaim | default (include "suwayomi.fullname" .) }}
+        {{- else}}
+          emptyDir: {}
+        {{- end}}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}

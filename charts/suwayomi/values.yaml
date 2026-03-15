@@ -33,6 +33,14 @@ server: {}
 # You can pass in secret values using environment variables
 # --environment variables
 env: []
+# -- enable presistence
+persistence:
+  enabled: true
+  size: 500Mi
+  accessMode: ReadWriteOnce
+  storageClass: ""
+  existingClaim: ""
+
 # This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
 serviceAccount:
   # Specifies whether a service account should be created.

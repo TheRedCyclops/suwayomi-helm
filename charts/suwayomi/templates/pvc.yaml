@@ -1,0 +1,17 @@
+# Sourced from https://blog.alekc.org/posts/template-for-persistent-volumes-on-helm-charts/ by Alexander Chernov
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+ name: {{ include "suwayomi.fullname" . }}
+ labels:
+   {{- include "suwayomi.labels" . | nindent 4 }}  
+spec:
+ storageClassName: {{ .Values.persistence.storageClass }}
+ accessModes:
+   - {{ .Values.persistence.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.persistence.size | quote }}
+ {{- end }}
+ 
