@@ -39,14 +39,14 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          image: busybox:1.28
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{ if or (.Values.server) (.Values.existingConfig) (.Values.volumeMounts) -}}
-          command: [sh,-c,'timeout -s TERM 2 java -Duser.home=/home/suwayomi -jar "/home/suwayomi/startup/tachidesk_latest.jar"; cat /overwrite/server.conf | while IFS= read -r line; do echo "Parsing line: $line"; sed -i "/$(echo -n "$line" | cut -d"=" -f1 | sed -e "s/^ *//" -e "s/ *$//")/c\\$line" /home/suwayomi/.local/share/Tachidesk/server.conf; done']
+          command: [sh,-c,'/home/suwayomi/create_server_conf.sh; cat /overwrite/server.conf | while IFS= read -r line; do echo "Parsing line: $line"; sed -i "/$(echo -n "$line" | cut -d"=" -f1 | sed -e "s/^ *//" -e "s/ *$//")/c\\$line" /home/suwayomi/.local/share/Tachidesk/server.conf; done']
           volumeMounts:
           {{- end}}
           {{- with .Values.volumeMounts }}
