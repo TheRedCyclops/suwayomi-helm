@@ -32,6 +32,7 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{ if or (.Values.server) (eq .Values.existingConfig.enabled true) -}}
       initContainers: 
         - name: copy-config
           {{- with .Values.securityContext }}
@@ -51,13 +52,12 @@ spec:
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
-            {{ if or (.Values.server) (.Values.existingConfig) -}}
             - name: config
               mountPath: /overwrite
               readOnly: true
             - name: data
               mountPath: /home/suwayomi/.local/share/Tachidesk
-            {{- end}}
+      {{- end}}
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
