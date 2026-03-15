@@ -7,6 +7,6 @@ metadata:
 data:
   'server.conf': |
 {{ range $key,$value := .Values.server -}}
-{{ indent 4 "server."}}{{$key}} = '{{$value}}'
+{{ indent 4 "server."}}{{$key}} = {{$value}}
 {{ end }}
 {{- end }}
