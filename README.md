@@ -1,6 +1,6 @@
 # suwayomi
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.1867](https://img.shields.io/badge/AppVersion-v2.1.1867-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.1867](https://img.shields.io/badge/AppVersion-v2.1.1867-informational?style=flat-square)
 
 A Helm chart for Suwayomi
 
@@ -45,6 +45,7 @@ env:
 | affinity | object | `{}` |  |
 | autoscaling | object | `{"enabled":false,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80}` | This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/ |
 | env | list | `[]` | environment variables |
+| existingConfig | object | `{"configKey":"server.conf","configName":"my-config","enabled":false}` | get configuration from a configMap instead of values |
 | fullnameOverride | string | `""` |  |
 | httpRoute | object | `{"annotations":{},"enabled":false,"hostnames":["chart-example.local"],"parentRefs":[{"name":"gateway","sectionName":"http"}],"rules":[{"matches":[{"path":{"type":"PathPrefix","value":"/headers"}}]}]}` | Expose the service via gateway-api HTTPRoute Requires Gateway API resources and suitable controller installed within the cluster (see: https://gateway-api.sigs.k8s.io/guides/) |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -55,6 +56,7 @@ env:
 | livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
+| persistence | object | `{"accessMode":"ReadWriteOnce","enabled":false,"existingClaim":"","size":"500Mi","storageClass":""}` | enable presistence |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
