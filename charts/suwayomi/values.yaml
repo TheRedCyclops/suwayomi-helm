@@ -33,6 +33,12 @@ server: {}
 # You can pass in secret values using environment variables
 # --environment variables
 env: []
+# -- get configuration from a configMap instead of values
+existingConfig:
+  enabled: false
+  configName: my-config
+  configKey: server.conf
+
 # -- enable presistence
 persistence:
   enabled: true
