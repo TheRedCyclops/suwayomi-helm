@@ -1,6 +1,6 @@
 # suwayomi
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.1867](https://img.shields.io/badge/AppVersion-v2.1.1867-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.2087](https://img.shields.io/badge/AppVersion-v2.1.2087-informational?style=flat-square)
 
 A Helm chart for [Suwayomi](https://github.com/Suwayomi/Suwayomi-Server)
 
