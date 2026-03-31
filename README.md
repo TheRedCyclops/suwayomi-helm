@@ -56,7 +56,7 @@ env:
 | livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
-| persistence | object | `{"accessMode":"ReadWriteOnce","enabled":false,"existingClaim":"","size":"500Mi","storageClass":""}` | enable presistence |
+| persistence | object | `{"accessMode":"ReadWriteOnce","enabled":false,"existingClaim":"","size":"500Mi","storageClass":""}` | setup persistence |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |

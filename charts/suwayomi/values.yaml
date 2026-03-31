@@ -39,7 +39,7 @@ existingConfig:
   configName: my-config
   configKey: server.conf
 
-# -- enable presistence
+# -- setup persistence
 persistence:
   enabled: false
   size: 500Mi
