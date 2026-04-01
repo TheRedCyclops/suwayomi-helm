@@ -66,8 +66,10 @@ podAnnotations: {}
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  # If changing the user the container is running as make sure to change this too
+  fsGroup: 1000
+  fsGroupChangePolicy: "OnRootMismatch"
 
 securityContext: {}
   # capabilities:
